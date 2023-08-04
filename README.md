@@ -5,7 +5,7 @@
 
 ## Download
 
-*Coming soon, be patient*
+Use [this](https://cdn.discordapp.com/attachments/1026011079131799563/1026011079253426206/bolt-tmlang-0.1.0.vsix) for now, will get Github CI hooked up soon.
 
 ## Goals
 
