@@ -1,0 +1,426 @@
+name: Mcfunction
+scopeName: source.mcfunction
+fileTypes:
+- mcfunction
+uuid: 8918dadd-8ebe-42d9-b1e9-0489ab228d9d
+patterns:
+- include: '#root'
+repository:
+  root:
+    patterns:
+    - include: '#names'
+    - include: '#comments'
+    - include: '#literals'
+    - include: '#whitespace'
+    - include: '#property'
+    - include: '#operators'
+    - include: '#selectors'
+  names:
+    patterns:
+    - name: meta.names
+      match: ^(\s*)([a-z_]+)
+      captures:
+        '1':
+          name: whitespace.bolt
+        '2':
+          name: support.variable.builtin.bolt
+    - name: meta.names
+      match: (?<=run)\s+[a-z_]+
+      captures:
+        '0':
+          name: support.variable.builtin.bolt
+    - name: meta.names
+      match: \b[0-9a-fA-F]+(?:-[0-9a-fA-F]+){4}\b
+      captures:
+        '0':
+          name: variable.bolt
+    - include: '#resource-name'
+    - name: meta.names
+      match: '[A-Za-z_][A-Za-z0-9_.#%$]*'
+      captures:
+        '0':
+          name: constant.language.bolt
+    - name: meta.names
+      match: '[#%$][A-Za-z0-9_.#%$]+'
+      captures:
+        '0':
+          name: variable.other.bolt
+  resource-name:
+    patterns:
+    - name: meta.resource-name
+      match: '#?[a-z_][a-z_.-]*:[a-z0-9_./-]+'
+      captures:
+        '0':
+          name: entity.name.function.bolt
+    - name: meta.resource-name
+      match: '#?[a-z0-9_\.\-]+\/[a-z0-9_\.\-\/]+'
+      captures:
+        '0':
+          name: entity.name.function.bolt
+  whitespace:
+    patterns:
+    - name: meta.whitespace
+      match: \s+
+      captures:
+        '0':
+          name: whitespace.bolt
+  comments:
+    patterns:
+    - name: meta.comments
+      captures:
+        '0':
+          name: comment.block.bolt
+      begin: ^\s*(#[>!])
+      end: ''
+      applyEndPatternLast: 1
+      patterns:
+      - name: meta.comments.comments_block_emphasized
+        begin: ''
+        end: \n
+        applyEndPatternLast: 1
+        patterns:
+        - include: '#comments_block_emphasized'
+      - include: '#comments_block'
+    - name: meta.comments
+      match: '#.*$'
+      captures:
+        '0':
+          name: comment.line.bolt
+  comments_block:
+    patterns:
+    - name: meta.comments_block
+      captures:
+        '0':
+          name: comment.block.bolt
+      begin: ^\s*#[>!]
+      end: \n
+      applyEndPatternLast: 1
+      patterns:
+      - include: '#comments_block_emphasized'
+    - name: meta.comments_block
+      captures:
+        '0':
+          name: comment.block.bolt
+      begin: ^\s*#
+      end: \n
+      applyEndPatternLast: 1
+      patterns:
+      - include: '#comments_block_normal'
+  comments_block_normal:
+    patterns:
+    - include: '#comments_block_special'
+    - name: meta.comments_block_normal
+      match: \S+
+      captures:
+        '0':
+          name: comment.block.bolt
+    - include: '#whitespace'
+  comments_block_emphasized:
+    patterns:
+    - include: '#comments_block_special'
+    - name: meta.comments_block_emphasized
+      match: \S+
+      captures:
+        '0':
+          name: comment.block.documentation.bolt
+    - include: '#whitespace'
+  comments_block_special:
+    patterns:
+    - name: meta.comments_block_special
+      match: '@\S+'
+      captures:
+        '0':
+          name: variable.parameter.bolt
+    - include: '#resource-name'
+    - name: meta.comments_block_special
+      match: '[#%$][A-Za-z0-9_.#%$]+'
+      captures:
+        '0':
+          name: variable.other.bolt
+  operators:
+    patterns:
+    - name: meta.operators
+      match: '[\-~%^?!+*<>\\/|&=.:]'
+      captures:
+        '0':
+          name: keyword.operator.bolt
+  literals:
+    patterns:
+    - name: meta.literals
+      match: \.\.
+      captures:
+        '0':
+          name: literal.bolt
+    - name: meta.literals
+      match: (true|false)
+      captures:
+        '0':
+          name: keyword.other.psuedo.bolt
+    - name: meta.literals
+      match: '[A-Za-z_]+'
+      captures:
+        '0':
+          name: entity.name.class.bolt
+    - name: meta.literals
+      match: '[0-7]b'
+      captures:
+        '0':
+          name: constant.numeric.byte.bolt
+    - name: meta.literals
+      match: '[+-]?\d*\.?\d+([eE]?[+-]?\d+)?[df]?\b'
+      captures:
+        '0':
+          name: constant.numeric.float.bolt
+    - name: meta.literals
+      match: '[+-]?\d+\b'
+      captures:
+        '0':
+          name: constant.numeric.integer.bolt
+    - name: meta.literals
+      captures:
+        '0':
+          name: string.quoted.double.bolt
+      begin: '"'
+      end: '"'
+      applyEndPatternLast: 1
+      patterns:
+      - include: '#literals_string-double'
+    - name: meta.literals
+      captures:
+        '0':
+          name: string.quoted.single.bolt
+      begin: ''''
+      end: ''''
+      applyEndPatternLast: 1
+      patterns:
+      - include: '#literals_string-single'
+  literals_string-double:
+    patterns:
+    - name: meta.literals_string-double
+      match: \\.
+      captures:
+        '0':
+          name: constant.character.escape.bolt
+    - name: meta.literals_string-double
+      match: '[^\\"]+'
+      captures:
+        '0':
+          name: string.quoted.double.bolt
+  literals_string-single:
+    patterns:
+    - name: meta.literals_string-single
+      match: \\.
+      captures:
+        '0':
+          name: constant.character.escape.bolt
+    - name: meta.literals_string-single
+      match: '[^\\'']+'
+      captures:
+        '0':
+          name: string.quoted.single.bolt
+  selectors:
+    patterns:
+    - name: meta.selectors
+      match: '@[a-z]'
+      captures:
+        '0':
+          name: variable.bolt
+  property:
+    patterns:
+    - name: meta.property
+      captures:
+        '0':
+          name: punctuation.bolt
+      begin: \{
+      end: \}
+      applyEndPatternLast: 1
+      patterns:
+      - name: meta.property.property_key
+        begin: ''
+        end: ''
+        applyEndPatternLast: 1
+        patterns:
+        - include: '#property_key'
+      - include: '#property_curly'
+    - name: meta.property
+      captures:
+        '0':
+          name: punctuation.bolt
+      begin: \[
+      end: \]
+      applyEndPatternLast: 1
+      patterns:
+      - name: meta.property.property_key
+        begin: ''
+        end: ''
+        applyEndPatternLast: 1
+        patterns:
+        - include: '#property_key'
+      - include: '#property_square'
+    - name: meta.property
+      captures:
+        '0':
+          name: punctuation.bolt
+      begin: \(
+      end: \)
+      applyEndPatternLast: 1
+      patterns:
+      - name: meta.property.property_key
+        begin: ''
+        end: ''
+        applyEndPatternLast: 1
+        patterns:
+        - include: '#property_key'
+      - include: '#property_paren'
+  property_curly:
+    patterns:
+    - include: '#whitespace'
+    - include: '#property'
+    - name: meta.property_curly
+      match: ','
+      captures:
+        '0':
+          name: punctuation.bolt
+  property_square:
+    patterns:
+    - include: '#whitespace'
+    - include: '#property'
+    - name: meta.property_square
+      match: ','
+      captures:
+        '0':
+          name: punctuation.bolt
+  property_paren:
+    patterns:
+    - include: '#whitespace'
+    - include: '#property'
+    - name: meta.property_paren
+      match: ','
+      captures:
+        '0':
+          name: punctuation.bolt
+  property_key:
+    patterns:
+    - include: '#whitespace'
+    - name: meta.property_key
+      captures:
+        '0':
+          name: entity.name.type.bolt
+      begin: '#?[a-z_][a-z_\.\-]*\:[a-z0-9_\.\-/]+(?=\s*\=)'
+      end: ''
+      applyEndPatternLast: 1
+      patterns:
+      - include: '#property_delimiter'
+    - name: meta.property_key
+      captures:
+        '0':
+          name: entity.name.type.bolt
+      begin: '#?[a-z_][a-z0-9_\.\-/]+'
+      end: ''
+      applyEndPatternLast: 1
+      patterns:
+      - include: '#property_delimiter'
+    - name: meta.property_key
+      captures:
+        '0':
+          name: entity.name.type.bolt
+      begin: '[A-Za-z_\-\+]+'
+      end: ''
+      applyEndPatternLast: 1
+      patterns:
+      - include: '#property_delimiter'
+    - name: meta.property_key
+      captures:
+        '0':
+          name: entity.name.type.bolt
+      begin: '"'
+      end: ''
+      applyEndPatternLast: 1
+      patterns:
+      - name: meta.property_key.literals_string-double
+        begin: ''
+        end: '"'
+        applyEndPatternLast: 1
+        patterns:
+        - include: '#literals_string-double'
+      - include: '#property_delimiter'
+    - name: meta.property_key
+      captures:
+        '0':
+          name: entity.name.type.bolt
+      begin: ''''
+      end: ''
+      applyEndPatternLast: 1
+      patterns:
+      - name: meta.property_key.literals_string-single
+        begin: ''
+        end: ''''
+        applyEndPatternLast: 1
+        patterns:
+        - include: '#literals_string-single'
+      - include: '#property_delimiter'
+    - name: meta.property_key
+      captures:
+        '0':
+          name: constant.numeric.integer.bolt
+      begin: -?\d+
+      end: ''
+      applyEndPatternLast: 1
+      patterns:
+      - include: '#property_delimiter'
+  property_key_string-double:
+    patterns:
+    - name: meta.property_key_string-double
+      match: \\.
+      captures:
+        '0':
+          name: constant.character.escape.bolt
+    - name: meta.property_key_string-double
+      match: '[^\\"\n]+'
+      captures:
+        '0':
+          name: entity.name.type.bolt
+  property_key_string-single:
+    patterns:
+    - name: meta.property_key_string-single
+      match: \\.
+      captures:
+        '0':
+          name: constant.character.escape.bolt
+    - name: meta.property_key_string-single
+      match: '[^\\''\n]+'
+      captures:
+        '0':
+          name: entity.name.type.bolt
+  property_delimiter:
+    patterns:
+    - include: '#whitespace'
+    - name: meta.property_delimiter
+      captures:
+        '0':
+          name: punctuation.bolt
+      begin: '[:=]!?'
+      end: ''
+      applyEndPatternLast: 1
+      patterns:
+      - include: '#property_value'
+    - name: meta.property_delimiter
+      match: ','
+      captures:
+        '0':
+          name: punctuation.bolt
+  property_value:
+    patterns:
+    - include: '#whitespace'
+    - name: meta.property_value
+      match: '#?[a-z_][a-z_\.\-]*\:[a-z0-9_\.\-/]+'
+      captures:
+        '0':
+          name: entity.name.tag.bolt
+    - name: meta.property_value
+      match: '#?[a-z_][a-z0-9_\.\-/]+'
+      captures:
+        '0':
+          name: entity.name.tag.bolt
+    - include: '#literals'
+    - include: '#property'
