@@ -3,9 +3,13 @@ name: VSCode
 on:
   pull_request:
     branches: [ main ]
+    paths:
+      - "mcfunction.json"
   push:
     branches: [ main ]
     tags: ["v*.*.*"]
+    paths:
+      - "mcfunction.json"
 
 jobs:
   ci:
