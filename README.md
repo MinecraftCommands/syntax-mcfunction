@@ -3,9 +3,8 @@
 > **Warning**
 > This repo is heavily under construction and is targeting the 1.20.2 (23w31a snapshot)
 
-## Download
+![demo](imgs/demo.png)
 
-See releases tab!
 ## Goals
 
 The aim of this repo is to provide a general, feature complete language spec for Minecraft commands. It is **not** geared towards error checking or the specific commands.
@@ -16,6 +15,12 @@ The aim of this repo is to provide a general, feature complete language spec for
 - [ ] Fix issues with nbt types
 - [ ] Fix issues on resource names versus keywords
   - [ ] Likely will need to combine them to some extent
+
+## Download
+
+Checkout the latest releases [here](https://github.com/rx-modules/language-mcfunction/releases).
+
+Proper releases to VSCode, Sublime Text, and other text editors *coming soon*!
 
 ## Acknowledgements
 
