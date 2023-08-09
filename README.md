@@ -5,15 +5,14 @@
 
 ## Download
 
-Use [this](https://cdn.discordapp.com/attachments/1026011079131799563/1026011079253426206/bolt-tmlang-0.1.0.vsix) for now, will get Github CI hooked up soon.
-
+See releases tab!
 ## Goals
 
 The aim of this repo is to provide a general, feature complete language spec for Minecraft commands. It is **not** geared towards error checking or the specific commands.
 
-- [ ] Add explicit macro support
-  - [ ] Add macro lines
-  - [ ] Disable quoting
+- [x] Add explicit macro support
+  - [x] Add macro lines
+  - [x] ~~Disable quoting~~ (not needed)
 - [ ] Fix issues with nbt types
 - [ ] Fix issues on resource names versus keywords
   - [ ] Likely will need to combine them to some extent
