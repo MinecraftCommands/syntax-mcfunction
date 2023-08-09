@@ -1,0 +1,46 @@
+{
+    "name": "mcfunction-tmlang",
+    "displayName": "MCFunction Language",
+    "description": "MCFunction",
+    "author": "rx97",
+    "private": true,
+    "version": "0.2.0",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Microsoft/vscode-extension-samples"
+    },
+    "engines": {
+        "vscode": "^1.81.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [
+            {
+                "id": "mcfunction",
+                "aliases": [
+                    "mcfunction",
+                    "mcf",
+                    "MCF"
+                ],
+                "extensions": [
+                    ".mcfunction",
+                    ".mcfunction"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "mcfunction",
+                "scopeName": "source.mcfunction",
+                "path": "./mcfunction.json"
+            }
+        ]
+    },
+    "devDependencies": {
+        "js-yaml": "^4.1.0"
+    }
+}

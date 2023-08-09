@@ -1,0 +1,33 @@
+name: VSCode
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # ---------------------------------------------
+    # -----           gather repo             -----
+    # ---------------------------------------------
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20.x
+        cache: npm
+
+    - name: Install VSCE and package
+      run: |
+        npm install -g @vscode/vsce
+        vsce package
+
+    - name: Release
+      uses: softprops/action-gh-release@v1

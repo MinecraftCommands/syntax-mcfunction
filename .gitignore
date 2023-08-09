@@ -1,1 +1,7 @@
 .DS_Store
+
+node_modules/
+*.vsix
+
+.vscode/*
+!.vscode/launch.json

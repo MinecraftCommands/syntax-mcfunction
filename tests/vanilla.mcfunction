@@ -13,6 +13,7 @@
 # @returns
 #   $mypack.raycast.result return
 #       The number of entities hit by the ray.
+#       Caching handled by storage:location/over/here
 
 function #mypack:hooks/raycast/begin
 
@@ -161,3 +162,7 @@ give @s minecraft:diamond_sword{display: {Name: '"My Custom Sword"'}}
 
 execute if score @s foo < @s bar run say execute if score @s foo < @s bar run say
 execute if score @s foo < @s bar run say hello @e[tag=baz, sort=nearest, limit=1] how are you?
+
+scoreboard players operation @a result \
+    += @e[type=marker,limit=1,tag=source] value
+$data modify storage $(id) $(path) set value "with random $(string1) stuff $(string2)"
