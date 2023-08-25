@@ -31,7 +31,7 @@ The aim of this repo is to provide a general, feature complete language spec for
 It is recommended you use [Package Control](https://packagecontrol.io/) to manage the package:
 
 1. [Install Package Control](https://packagecontrol.io/installation) if it is not already present.
-2. Run the `Package Control: Add Repository` [command](https://packagecontrol.io/docs/usage) and enter `https://github.com/rx-modules/language-mcfunction` to add the repository as a package.
+2. Run the `Package Control: Add Repository` [command](https://packagecontrol.io/docs/usage) and enter `https://github.com/rx-modules/language-mcfunction.git` to add the repository as a package.
 3. Run the `Package Control: Install Package` and search for `language-mcfunction` to install it as you would a normal package.
 
 This will keep the package updated with the repository automatically.
