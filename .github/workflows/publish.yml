@@ -64,4 +64,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        files: "*.vsix"
+        files: |
+          "*.vsix"
+          "mcfunction.tmLanguage.yaml"
+          "mcfunction.tmLanguage.json"
