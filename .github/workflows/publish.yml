@@ -37,7 +37,7 @@ jobs:
     - name: Export JSON from YAML
       run: js-yaml mcfunction.tmLanguage.yaml > mcfunction.tmLanguage.json            
     
-    - name: Push JSON to repo for sublime
+    - name: Push JSON to repo for sublime (if not matched)
       if: github.ref == 'refs/heads/main'
       run: |
         git config --global user.name "github-actions"
@@ -45,6 +45,7 @@ jobs:
         git add mcfunction.tmLanguage.json
         git commit -m "🤖 Generate JSON"
         git push origin main
+      continue-on-error: true
     
     - name: Package VSCode Ext
       run: vsce package
