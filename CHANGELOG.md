@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.3.0
+
+- Added support for Sublime Text
+- Reverted commenting changes from last release
+  - This caused issues when you commented out normal code
+- Slightly restructured GA + some naming
+
 ## v0.2.0
 
 Refactor and additions to qualify for a `mcfunction` language

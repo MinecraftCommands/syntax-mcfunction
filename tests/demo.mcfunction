@@ -2,6 +2,10 @@
 # Normal comment
 # @annotation $scoreboard.variable #resource:location
 
+# Example of base game commands
+# Normal comment
+# @annotation $scoreboard.variable #resource:location
+
 setblock ~ ~ ~ minecraft:dispenser[facing=up]{Items: [{id: "minecraft:diamond", Count: 1}]}
 $data modify storage $(id) $(path) set value "with random $(string1) stuff $(string2)"
 tellraw @a [{"text": "hello", "color": "blue"}, {"text": "world", "color": "blue"}]

@@ -4,12 +4,12 @@ on:
   pull_request:
     branches: [ main ]
     paths:
-      - "mcfunction.json"
+      - "mcfunction.tmLanguage.yaml"
   push:
     branches: [ main ]
     tags: ["v*.*.*"]
     paths:
-      - "mcfunction.json"
+      - "mcfunction.tmLanguage.yaml"
 
 jobs:
   ci:
@@ -29,17 +29,35 @@ jobs:
         node-version: 20.x
         cache: npm
 
-    - name: Install VSCE and package
+    - name: Install npm stuff
       run: |
         npm install -g @vscode/vsce
-        vsce package
+        npm install -g js-yaml
+    
+    - name: Export JSON from YAML
+      run: js-yaml mcfunction.tmLanguage.yaml > mcfunction.tmLanguage.json            
+    
+    - name: Push JSON to repo for sublime
+      if: github.ref == 'refs/heads/main'
+      run: |
+        git config --global user.name "github-actions"
+        git config --global user.email "action@github.com"
+        git add mcfunction.tmLanguage.json
+        git commit -m "🤖 Generate JSON"
+        git push origin main
+    
+    - name: Package VSCode Ext
+      run: vsce package
     
     - name: Archive production artifacts
       uses: actions/upload-artifact@v3
       if: "!startsWith(github.ref, 'refs/tags/')"
       with:
         name: dist-without-markdown
-        path: "*.vsix"
+        path: |
+          "*.vsix"
+          "mcfunction.tmLanguage.yaml"
+          "mcfunction.tmLanguage.json"
 
     - name: Release
       uses: softprops/action-gh-release@v1

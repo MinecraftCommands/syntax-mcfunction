@@ -16,11 +16,27 @@ The aim of this repo is to provide a general, feature complete language spec for
 - [ ] Fix issues on resource names versus keywords
   - [ ] Likely will need to combine them to some extent
 
-## Download
+## Installing
 
-Checkout the latest releases [here](https://github.com/rx-modules/language-mcfunction/releases).
+### VSCode
 
-Proper releases to VSCode, Sublime Text, and other text editors *coming soon*!
+1. Grab the `.vsix` extension from [here](https://github.com/rx-modules/language-mcfunction/releases).
+2. Drag and drop it into VSCode (any folder).
+3. Right click the file and click "Install Extension VSIX".
+
+*Marketplace coming soon*
+
+### Sublime Text
+
+It is recommended you use [Package Control](https://packagecontrol.io/) to manage the package:
+
+1. [Install Package Control](https://packagecontrol.io/installation) if it is not already present.
+2. Run the `Package Control: Add Repository` [command](https://packagecontrol.io/docs/usage) and enter `https://github.com/rx-modules/language-mcfunction` to add the repository as a package.
+3. Run the `Package Control: Install Package` and search for `language-mcfunction` to install it as you would a normal package.
+
+This will keep the package updated with the repository automatically.
+
+Otherwise you can clone the repository into user packages (e.g. `%appdata%\Sublime Text 3\Packages`) and update it manually.
 
 ## Acknowledgements
 

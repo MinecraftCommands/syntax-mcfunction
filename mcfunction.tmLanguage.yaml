@@ -19,51 +19,82 @@ repository:
     - include: '#property'
     - include: '#operators'
     - include: '#selectors'
-
+  
   comments:
     patterns:
     - applyEndPatternLast: 1
-      begin: ^\s*#
+      begin: ^\s*(#[>!])(.+)$
       beginCaptures:
+        '1':
+          name: comment.block.mcfunction
+        '2':
+          name: markup.bold.mcfunction
+      captures:
         '0':
-          name: comment.line.mcfunction
-      end: $
-      name: meta.comment
+          name: comment.block.mcfunction
+      end: ^(?!#)
+      name: meta.comments
       patterns:
       - include: '#comments_block'
     - captures:
         '0':
-          name: comment.line.bolt
+          name: comment.line.mcfunction
       match: '#.*$'
-      name: meta.comment.trailing
+      name: meta.comments
 
   comments_block:
     patterns:
+    - applyEndPatternLast: 1
+      begin: ^\s*#[>!]
+      captures:
+        '0':
+          name: comment.block.mcfunction
+      end: $
+      name: meta.comments_block
+      patterns:
+      - include: '#comments_block_emphasized'
+    - applyEndPatternLast: 1
+      begin: ^\s*#
+      captures:
+        '0':
+          name: comment.block.mcfunction
+      end: $
+      name: meta.comments_block
+      patterns:
+      - include: '#comments_block_normal'
+
+  comments_block_emphasized:
+    patterns:
+    - include: '#comments_block_special'
     - captures:
-        '1':
-          name: comment.line.mcfunction
-        '2':
-          name: whitespace.mcfunction
-        '3':
+        '0':
           name: markup.bold.mcfunction
-      match: (>)(\s+)(.+)
-      name: meta.comment.header.mcfunction
+      match: \S+
+      name: meta.comments_block_emphasized
+
+  comments_block_normal:
+    patterns:
+    - include: '#comments_block_special'
+    - captures:
+        '0':
+          name: comment.block.mcfunction
+      match: \S+
+      name: meta.comments_block_normal
+    - include: '#whitespace'
+
+  comments_block_special:
+    patterns:
     - captures:
         '0':
           name: markup.heading.mcfunction
       match: '@\S+'
-      name: meta.comment.annotation
+      name: meta.comments_block_special
     - include: '#resource-name'
     - captures:
         '0':
           name: variable.other.mcfunction
       match: '[#%$][A-Za-z0-9_.#%$]+'
-      name: meta.comment.variable
-    - captures:
-        '0':
-          name: comment.line.mcfunction
-      match: '.'
-      name: meta.comment
+      name: meta.comments_block_special
 
   literals:
     patterns:
@@ -158,7 +189,9 @@ repository:
           name: whitespace.mcfunction
         '2':
           name: markup.italic.mcfunction
-      match: ^(\s*)(\$[a-z_]*)
+        '3':
+          name: keyword.control.flow.mcfunction
+      match: ^(\s*)(\$)([a-z_]*)
       name: meta.names.mcfunction
     - captures:
         '0':

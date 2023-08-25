@@ -4,7 +4,7 @@
     "description": "MCFunction",
     "author": "rx97",
     "private": true,
-    "version": "0.2.0",
+    "version": "0.3.0",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -36,7 +36,7 @@
             {
                 "language": "mcfunction",
                 "scopeName": "source.mcfunction",
-                "path": "./mcfunction.json"
+                "path": "./mcfunction.tmLanguage.json"
             }
         ]
     },
