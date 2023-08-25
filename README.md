@@ -34,6 +34,8 @@ It is recommended you use [Package Control](https://packagecontrol.io/) to manag
 2. Run the `Package Control: Add Repository` [command](https://packagecontrol.io/docs/usage) and enter `https://github.com/rx-modules/language-mcfunction.git` to add the repository as a package.
 3. Run the `Package Control: Install Package` and search for `language-mcfunction` to install it as you would a normal package.
 
+> Note: You might need to remove Arc's language-mcfunction if you have it installed. You can do that via `Package Control: Remove Repository` and selecting https://github.com/Arcensoth/language-mcfunction then `Package Control: Remove Package` and selecting `language-mcfunction` from 2021.
+
 This will keep the package updated with the repository automatically.
 
 Otherwise you can clone the repository into user packages (e.g. `%appdata%\Sublime Text 3\Packages`) and update it manually.
