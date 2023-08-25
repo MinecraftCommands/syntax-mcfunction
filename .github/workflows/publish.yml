@@ -4,12 +4,12 @@ on:
   pull_request:
     branches: [ main ]
     paths:
-      - "mcfunction.tmLanguage.yaml"
+      - "mcfunction.*"
   push:
     branches: [ main ]
     tags: ["v*.*.*"]
     paths:
-      - "mcfunction.tmLanguage.yaml"
+      - "mcfunction.*"
 
 jobs:
   ci:
