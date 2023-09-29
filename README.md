@@ -15,6 +15,8 @@ The aim of this syntax definition is to provide a general, feature complete lang
 - [ ] Fix issues with nbt and other suffixes on numbrs
 - [ ] Fix issues on resource names versus keywords
   - Specifically when using dotted names
+- [ ] Add tests for Bedrock
+- [ ] (VSCode & Sublime) Add jsonschema file for `pack.mcmeta`
 
 ## Installing
 
@@ -31,7 +33,7 @@ The aim of this syntax definition is to provide a general, feature complete lang
 It is recommended you use [Package Control](https://packagecontrol.io/) to manage the package:
 
 1. [Install Package Control](https://packagecontrol.io/installation) if it is not already present.
-2. Run the `Package Control: Add Repository` [command](https://packagecontrol.io/docs/usage) and enter `https://github.com/rx-modules/syntax-mcfunction.git` to add the repository as a package.
+2. Run the `Package Control: Add Repository` [command](https://packagecontrol.io/docs/usage) and enter `https://github.com/MinecraftCommands/syntax-mcfunction.git` to add the repository as a package.
 3. Run the `Package Control: Install Package` and search for `syntax-mcfunction` to install it as you would a normal package.
 
 <details><summary> If you already had language-mcfunction </summary>
