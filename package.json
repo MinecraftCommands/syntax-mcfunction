@@ -2,9 +2,9 @@
     "name": "mcfunction-tmlang",
     "displayName": "MCFunction Language",
     "description": "MCFunction",
-    "author": "rx97",
+    "author": "MinecraftCommands",
     "private": true,
-    "version": "0.3.0",
+    "version": "0.3.1",
     "license": "MIT",
     "repository": {
         "type": "git",

@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.3.1
+
+- Update name to `syntax-mcfunction`
+- Move to `MinecraftCommands` organization
+
 ## v0.3.0
 
 - Added support for Sublime Text
