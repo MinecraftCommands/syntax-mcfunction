@@ -4,7 +4,7 @@
     "description": "Syntax highlighting for mcfunction files",
     "author": "MinecraftCommands",
     "private": true,
-    "version": "0.3.6",
+    "version": "0.4.0",
     "license": "MIT",
     "repository": {
         "type": "git",
