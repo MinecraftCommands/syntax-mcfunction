@@ -40,6 +40,6 @@ body:
       label: "Other Info"
       description: Any drawbacks or other details of your feature request ?
       placeholder: Other thoughts you think might be **Important**
-    render: bash
+      render: bash
     validations:
       required: false
