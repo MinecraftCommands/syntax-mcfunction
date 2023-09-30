@@ -1,9 +1,11 @@
+<img align="right" src="https://raw.githubusercontent.com/MinecraftCommands/syntax-mcfunction/main/logo.png?sanitize=true" alt="logo" width="76">
+
 # syntax-mcfunction
 
 > **Warning**
 > This syntax is in **beta** targeting Minecraft 1.20.2+
 
-![demo](https://raw.githubusercontent.com/MinecraftCommands/syntax-mcfunction/main/icon.png)
+![demo](https://raw.githubusercontent.com/MinecraftCommands/syntax-mcfunction/main/imgs/demo.png)
 
 ## Goals
 
