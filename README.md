@@ -3,7 +3,7 @@
 > **Warning**
 > This syntax is in **beta** targeting Minecraft 1.20.2+
 
-![demo](imgs/demo.png)
+![demo](https://raw.githubusercontent.com/MinecraftCommands/syntax-mcfunction/main/icon.png)
 
 ## Goals
 
@@ -17,6 +17,8 @@ The aim of this syntax definition is to provide a general, feature complete lang
   - Specifically when using dotted names
 - [ ] Add tests for Bedrock
 - [ ] (VSCode & Sublime) Add jsonschema file for `pack.mcmeta`
+- [ ] Compare w/ `language-mcfunction` to synchronize scope names
+  - It'll never reach 1:1, but we can get to 70-80%
 
 ## Installing
 
