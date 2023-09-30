@@ -38,7 +38,7 @@ body:
     id: other-info
     attributes:
       label: "Other Info"
-      description: Any drawbacks or other details of your feature request ?
+      description: Any drawbacks or other details of your feature request?
       placeholder: Other thoughts you think might be **Important**
       render: bash
     validations:

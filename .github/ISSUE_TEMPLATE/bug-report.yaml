@@ -17,9 +17,9 @@ body:
     attributes:
       label: | 
         What type of issues are you dealing with?
-
+      description: |
         > **Note**
-        > Coloring inconsistencies w/ `language-mcfunction` are not always considered bugs
+        > Coloring inconsistencies w/ `language-mcfunction` are not always considered bugs and may not be fixed
       multiple: true
       options:
         - Incorrect highlighting
