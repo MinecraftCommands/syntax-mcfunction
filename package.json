@@ -1,5 +1,6 @@
 {
     "name": "syntax-mcfunction",
+    "publisher": "MinecraftCommands",
     "displayName": "Mcfunction Syntax",
     "description": "Syntax highlighting for mcfunction files",
     "author": "MinecraftCommands",
