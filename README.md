@@ -5,7 +5,7 @@
 > **Warning**
 > This syntax is in **beta** targeting Minecraft 1.20.2+
 
-![demo](https://raw.githubusercontent.com/MinecraftCommands/syntax-mcfunction/main/imgs/demo.png)
+![demo](https://raw.githubusercontent.com/MinecraftCommands/syntax-mcfunction/main/imgs/showcase.png)
 
 ## Goals
 
