@@ -24,13 +24,9 @@ The aim of this syntax definition is to provide a general, feature complete lang
 
 ## Installing
 
-### VSCode
+### [VSCode Extension](https://marketplace.visualstudio.com/items?itemName=MinecraftCommands.syntax-mcfunction)
 
-1. Grab the `.vsix` extension from [here](https://github.com/MinecraftCommands/syntax-mcfunction/releases).
-2. Drag and drop it into VSCode (any folder).
-3. Right click the file and click "Install Extension VSIX".
-
-*Marketplace coming soon*
+Install the extension from the [marketplace](https://marketplace.visualstudio.com/items?itemName=MinecraftCommands.syntax-mcfunction) or by searching for `syntax-mcfunction` in the extensions tab.
 
 ### Sublime Text
 
