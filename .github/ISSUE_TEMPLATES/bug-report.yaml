@@ -1,0 +1,65 @@
+name: 🐛 Bug Report
+description: File a bug report related to syntax highlighting
+title: "Bug: "
+labels: ["bug"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking the time to fill out a bug report.
+
+        > **Important**
+        > Remember to check that you are on the latest version of the extension (or indicate pre-release if applicable).
+
+  - type: dropdown
+    id: type-of-issue
+    attributes:
+      label: | 
+        What type of issues are you dealing with?
+
+        > **Note**
+        > Coloring inconsistencies w/ `language-mcfunction` are not always considered bugs
+      multiple: true
+      options:
+        - Incorrect highlighting
+        - Scope leak (breaking highlighting later in the file)
+        - Coloring or scope inconsistency
+        - Alternate syntax related (likely "Won't Fix")
+        - Other (please specify)
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: | 
+        What did you expect to happen? What happened instead?
+        Include screenshots to explain your problem visually.
+      placeholder: Tell us what you see!
+    validations:
+      required: true
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Which text editors are you seeing the problem on?
+      multiple: true
+      options:
+        - VSCode
+        - Sublime Text
+        - Other (please specify above)
+    validations:
+      required: true
+
+  - type: textarea
+    id: code-snippets
+    attributes:
+      label: Include a code snippet
+      description: Put the exact code snippet used to produce the bug
+      placeholder: |
+        say my buggy command
+      value: |
+        execute as @a run say buggy command executed
+      render: mcfunction
+    validations:
+      required: false
