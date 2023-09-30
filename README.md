@@ -2,6 +2,13 @@
 
 # syntax-mcfunction
 
+<p align="center">
+A syntax definition for <a href="https://minecraft.wiki/w/Commands">Minecraft Commands</a>.
+<br>
+Give this repo a ⭐ if you like it!
+</p>
+
+
 > **Warning**
 > This syntax is in **beta** targeting Minecraft 1.20.2+
 
