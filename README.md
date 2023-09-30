@@ -1,4 +1,4 @@
-<img align="right" src="https://raw.githubusercontent.com/MinecraftCommands/syntax-mcfunction/main/logo.png?sanitize=true" alt="logo" width="76">
+<img align="right" src="https://raw.githubusercontent.com/MinecraftCommands/syntax-mcfunction/main/icon.png?sanitize=true" alt="logo" width="76">
 
 # syntax-mcfunction
 
