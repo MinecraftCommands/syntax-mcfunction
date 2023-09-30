@@ -1,10 +1,10 @@
 {
-    "name": "mcfunction-tmlang",
-    "displayName": "MCFunction Language",
-    "description": "MCFunction",
+    "name": "syntax-mcfunction",
+    "displayName": "Mcfunction Syntax",
+    "description": "Syntax highlighting for mcfunction files",
     "author": "MinecraftCommands",
     "private": true,
-    "version": "0.3.1",
+    "version": "0.3.6",
     "license": "MIT",
     "repository": {
         "type": "git",
