@@ -21,13 +21,12 @@ The aim of this syntax definition is to provide a general, feature complete lang
 ## TODOs
 
 - [x] Add explicit macro support
-- [ ] Fix issues with nbt and other suffixes on numbrs
-- [ ] Fix issues on resource names versus keywords
-  - Specifically when using dotted names
+- [x] Fix issues with nbt and other suffixes on numbrs
+- [x] Fix issues on resource names versus keywords
 - [ ] Add tests for Bedrock
 - [ ] (VSCode & Sublime) Add jsonschema file for `pack.mcmeta`
-- [ ] Compare w/ `language-mcfunction` to synchronize scope names
-  - It'll never reach 1:1, but we can get to 70-80%
+- [-] Compare w/ `language-mcfunction` to synchronize scope names
+  - Likely won't get better than this tbh, will need feedback
 
 ## Installing
 
@@ -43,7 +42,7 @@ It is recommended you use [Package Control](https://packagecontrol.io/) to manag
 2. Run the `Package Control: Add Repository` [command](https://packagecontrol.io/docs/usage) and enter `https://github.com/MinecraftCommands/syntax-mcfunction.git` to add the repository as a package.
 3. Run the `Package Control: Install Package` and search for `syntax-mcfunction` to install it as you would a normal package.
 
-<details><summary> If you already had language-mcfunction </summary>
+<details><summary> If you already had <code>language-mcfunction</code> </summary>
 
 > **Note**
 > You might want to remove Arc's language-mcfunction if you have it installed. You can do that via `Package Control: Remove Repository` and selecting https://github.com/Arcensoth/language-mcfunction then `Package Control: Remove Package` and selecting `language-mcfunction` from 2021.

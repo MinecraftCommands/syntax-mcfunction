@@ -1,9 +1,16 @@
-execute store result score notfake
-execute store result score not_fake
-execute store result score unquoted.string
-execute store result score #fakeplayer
-execute store result score #fake.player
-execute store result score #fake_player
-execute store result score $fakeplayer
-execute store result score %fakeplayer
-execute store result score "quoted string"
+scoreboard notfake
+scoreboard not_fake
+scoreboard unquoted.string
+scoreboard #fakeplayer
+scoreboard #fake.player
+scoreboard #fake_player
+scoreboard $fakeplayer
+scoreboard %fakeplayer
+scoreboard .fakeplayer
+scoreboard "quoted string"
+
+# cursed blame SnaveSutit
+scoreboard #fakeplayer-1y-1z-
+scoreboard #-200
+scoreboard %fakeplayer-1.20%%
+scoreboard .-30

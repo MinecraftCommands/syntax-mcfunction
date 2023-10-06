@@ -1,9 +1,10 @@
 {
-  "name": "Mcfunction",
+  "name": "Syntax Mcfunction",
   "scopeName": "source.mcfunction",
   "uuid": "8918dadd-8ebe-42d9-b1e9-0489ab228d9d",
   "fileTypes": [
-    "mcfunction"
+    "mcfunction",
+    "bolt"
   ],
   "patterns": [
     {
@@ -14,13 +15,16 @@
     "root": {
       "patterns": [
         {
+          "include": "#literals"
+        },
+        {
           "include": "#names"
         },
         {
           "include": "#comments"
         },
         {
-          "include": "#literals"
+          "include": "#subcommands"
         },
         {
           "include": "#property"
@@ -180,29 +184,20 @@
         {
           "captures": {
             "0": {
-              "name": "keyword.other.psuedo.mcfunction"
+              "name": "constant.numeric.boolean.mcfunction"
             }
           },
-          "match": "(true|false)",
+          "match": "(true|false|True|False)",
           "name": "meta.literals"
         },
         {
           "captures": {
             "0": {
-              "name": "entity.name.class.mcfunction"
+              "name": "variable.uuid.mcfunction"
             }
           },
-          "match": "[A-Za-z_]+",
-          "name": "meta.literals"
-        },
-        {
-          "captures": {
-            "0": {
-              "name": "constant.numeric.byte.mcfunction"
-            }
-          },
-          "match": "[0-9]b",
-          "name": "meta.literals"
+          "match": "\\b[0-9a-fA-F]+(?:-[0-9a-fA-F]+){4}\\b",
+          "name": "meta.names"
         },
         {
           "captures": {
@@ -211,6 +206,15 @@
             }
           },
           "match": "[+-]?\\d*\\.?\\d+([eE]?[+-]?\\d+)?[df]?\\b",
+          "name": "meta.literals"
+        },
+        {
+          "captures": {
+            "0": {
+              "name": "constant.numeric.integer.mcfunction"
+            }
+          },
+          "match": "[+-]?\\d+(b|B|L|l)\\b",
           "name": "meta.literals"
         },
         {
@@ -253,6 +257,19 @@
               "include": "#literals_string-single"
             }
           ]
+        }
+      ]
+    },
+    "subcommands": {
+      "patterns": [
+        {
+          "captures": {
+            "0": {
+              "name": "entity.name.class.mcfunction"
+            }
+          },
+          "match": "[A-Za-z_]+",
+          "name": "meta.literals"
         }
       ]
     },
@@ -318,7 +335,7 @@
             }
           },
           "match": "^(\\s*)([a-z_]+)(?=\\s)",
-          "name": "meta.names.mcfunction"
+          "name": "meta.names"
         },
         {
           "captures": {
@@ -329,28 +346,28 @@
               "name": "markup.italic.mcfunction"
             },
             "3": {
+              "name": "whitespace.mcfunction"
+            },
+            "4": {
               "name": "keyword.control.flow.mcfunction"
             }
           },
-          "match": "^(\\s*)(\\$)([a-z_]*)",
-          "name": "meta.names.mcfunction"
+          "match": "^(\\s*)(\\$)( ?)([a-z_]*)",
+          "name": "meta.names"
         },
         {
           "captures": {
-            "0": {
-              "name": "keyboard.control.flow.mcfunction"
+            "1": {
+              "name": "entity.name.mcfunction"
+            },
+            "2": {
+              "name": "whitespace.mcfunction"
+            },
+            "3": {
+              "name": "keyword.control.flow.mcfunction"
             }
           },
-          "match": "(?<=run)\\s+[a-z_]+(?=\\s)",
-          "name": "meta.names.mcfunction"
-        },
-        {
-          "captures": {
-            "0": {
-              "name": "variable.uuid.mcfunction"
-            }
-          },
-          "match": "\\b[0-9a-fA-F]+(?:-[0-9a-fA-F]+){4}\\b",
+          "match": "(run)(\\s+)([a-z_]+)",
           "name": "meta.names"
         },
         {
@@ -383,7 +400,7 @@
               "name": "variable.other.mcfunction"
             }
           },
-          "match": "[#%$][A-Za-z0-9_.#%$]+",
+          "match": "([#%$]|((?<=\\s)\\.))[A-Za-z0-9_.#%$\\-]+",
           "name": "meta.names"
         }
       ]
@@ -402,7 +419,7 @@
               "name": "punctuation.definition.template-expression.end.mcfunction"
             }
           },
-          "match": "(\\$\\()([A-Za-z0-9_]+)(\\))",
+          "match": "(\\$\\()([A-Za-z0-9_]*)(\\))",
           "name": "meta.macro-name"
         }
       ]
@@ -415,7 +432,7 @@
               "name": "keyword.operator.mcfunction"
             }
           },
-          "match": "[\\-~%^?!+*<>\\\\/|&=.:,]",
+          "match": "[\\-~%^?!+*<>\\\\/|&=.:,;]",
           "name": "meta.operators"
         }
       ]
@@ -433,6 +450,12 @@
           "end": "\\}",
           "name": "meta.property.curly",
           "patterns": [
+            {
+              "include": "#resource-name"
+            },
+            {
+              "include": "#literals"
+            },
             {
               "include": "#property_key"
             },
@@ -452,12 +475,18 @@
           "begin": "\\[",
           "captures": {
             "0": {
-              "name": "punctuation.mcfunction"
+              "name": "variable.other.mcfunction"
             }
           },
           "end": "\\]",
           "name": "meta.property.square",
           "patterns": [
+            {
+              "include": "#resource-name"
+            },
+            {
+              "include": "#literals"
+            },
             {
               "include": "#property_key"
             },
@@ -485,6 +514,9 @@
           "patterns": [
             {
               "include": "#resource-name"
+            },
+            {
+              "include": "#literals"
             },
             {
               "include": "#property_key"
@@ -528,7 +560,7 @@
               "name": "entity.name.type.mcfunction"
             }
           },
-          "match": "[A-Za-z_\\-\\+]+",
+          "match": "[A-Za-z_]+[A-Za-z_\\-\\+]*",
           "name": "meta.property_key"
         }
       ]
@@ -552,9 +584,6 @@
           },
           "match": "#?[a-z_][a-z0-9_\\.\\-/]+",
           "name": "meta.property_value"
-        },
-        {
-          "include": "#literals"
         }
       ]
     },
@@ -588,7 +617,7 @@
               "name": "support.class.mcfunction"
             }
           },
-          "match": "@[a-z]",
+          "match": "@[a-z]+",
           "name": "meta.selectors"
         }
       ]

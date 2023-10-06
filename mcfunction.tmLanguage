@@ -5,9 +5,10 @@
 	<key>fileTypes</key>
 	<array>
 		<string>mcfunction</string>
+		<string>bolt</string>
 	</array>
 	<key>name</key>
-	<string>Mcfunction</string>
+	<string>Syntax Mcfunction</string>
 	<key>patterns</key>
 	<array>
 		<dict>
@@ -245,11 +246,11 @@
 						<key>0</key>
 						<dict>
 							<key>name</key>
-							<string>keyword.other.psuedo.mcfunction</string>
+							<string>constant.numeric.boolean.mcfunction</string>
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>(true|false)</string>
+					<string>(true|false|True|False)</string>
 					<key>name</key>
 					<string>meta.literals</string>
 				</dict>
@@ -259,27 +260,13 @@
 						<key>0</key>
 						<dict>
 							<key>name</key>
-							<string>entity.name.class.mcfunction</string>
+							<string>variable.uuid.mcfunction</string>
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>[A-Za-z_]+</string>
+					<string>\b[0-9a-fA-F]+(?:-[0-9a-fA-F]+){4}\b</string>
 					<key>name</key>
-					<string>meta.literals</string>
-				</dict>
-				<dict>
-					<key>captures</key>
-					<dict>
-						<key>0</key>
-						<dict>
-							<key>name</key>
-							<string>constant.numeric.byte.mcfunction</string>
-						</dict>
-					</dict>
-					<key>match</key>
-					<string>[0-9]b</string>
-					<key>name</key>
-					<string>meta.literals</string>
+					<string>meta.names</string>
 				</dict>
 				<dict>
 					<key>captures</key>
@@ -292,6 +279,20 @@
 					</dict>
 					<key>match</key>
 					<string>[+-]?\d*\.?\d+([eE]?[+-]?\d+)?[df]?\b</string>
+					<key>name</key>
+					<string>meta.literals</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>constant.numeric.integer.mcfunction</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>[+-]?\d+(b|B|L|l)\b</string>
 					<key>name</key>
 					<string>meta.literals</string>
 				</dict>
@@ -461,7 +462,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>(\$\()([A-Za-z0-9_]+)(\))</string>
+					<string>(\$\()([A-Za-z0-9_]*)(\))</string>
 					<key>name</key>
 					<string>meta.macro-name</string>
 				</dict>
@@ -488,7 +489,7 @@
 					<key>match</key>
 					<string>^(\s*)([a-z_]+)(?=\s)</string>
 					<key>name</key>
-					<string>meta.names.mcfunction</string>
+					<string>meta.names</string>
 				</dict>
 				<dict>
 					<key>captures</key>
@@ -506,39 +507,40 @@
 						<key>3</key>
 						<dict>
 							<key>name</key>
+							<string>whitespace.mcfunction</string>
+						</dict>
+						<key>4</key>
+						<dict>
+							<key>name</key>
 							<string>keyword.control.flow.mcfunction</string>
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>^(\s*)(\$)([a-z_]*)</string>
+					<string>^(\s*)(\$)( ?)([a-z_]*)</string>
 					<key>name</key>
-					<string>meta.names.mcfunction</string>
+					<string>meta.names</string>
 				</dict>
 				<dict>
 					<key>captures</key>
 					<dict>
-						<key>0</key>
+						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>keyboard.control.flow.mcfunction</string>
+							<string>entity.name.mcfunction</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>whitespace.mcfunction</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.control.flow.mcfunction</string>
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>(?&lt;=run)\s+[a-z_]+(?=\s)</string>
-					<key>name</key>
-					<string>meta.names.mcfunction</string>
-				</dict>
-				<dict>
-					<key>captures</key>
-					<dict>
-						<key>0</key>
-						<dict>
-							<key>name</key>
-							<string>variable.uuid.mcfunction</string>
-						</dict>
-					</dict>
-					<key>match</key>
-					<string>\b[0-9a-fA-F]+(?:-[0-9a-fA-F]+){4}\b</string>
+					<string>(run)(\s+)([a-z_]+)</string>
 					<key>name</key>
 					<string>meta.names</string>
 				</dict>
@@ -588,7 +590,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>[#%$][A-Za-z0-9_.#%$]+</string>
+					<string>([#%$]|((?&lt;=\s)\.))[A-Za-z0-9_.#%$\-]+</string>
 					<key>name</key>
 					<string>meta.names</string>
 				</dict>
@@ -608,7 +610,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>[\-~%^?!+*&lt;&gt;\\/|&amp;=.:,]</string>
+					<string>[\-~%^?!+*&lt;&gt;\\/|&amp;=.:,;]</string>
 					<key>name</key>
 					<string>meta.operators</string>
 				</dict>
@@ -639,6 +641,14 @@
 					<array>
 						<dict>
 							<key>include</key>
+							<string>#resource-name</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#literals</string>
+						</dict>
+						<dict>
+							<key>include</key>
 							<string>#property_key</string>
 						</dict>
 						<dict>
@@ -665,7 +675,7 @@
 						<key>0</key>
 						<dict>
 							<key>name</key>
-							<string>punctuation.mcfunction</string>
+							<string>variable.other.mcfunction</string>
 						</dict>
 					</dict>
 					<key>end</key>
@@ -674,6 +684,14 @@
 					<string>meta.property.square</string>
 					<key>patterns</key>
 					<array>
+						<dict>
+							<key>include</key>
+							<string>#resource-name</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#literals</string>
+						</dict>
 						<dict>
 							<key>include</key>
 							<string>#property_key</string>
@@ -714,6 +732,10 @@
 						<dict>
 							<key>include</key>
 							<string>#resource-name</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#literals</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -815,10 +837,6 @@
 					<key>name</key>
 					<string>meta.property_value</string>
 				</dict>
-				<dict>
-					<key>include</key>
-					<string>#literals</string>
-				</dict>
 			</array>
 		</dict>
 		<key>resource-name</key>
@@ -861,6 +879,10 @@
 			<array>
 				<dict>
 					<key>include</key>
+					<string>#literals</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#names</string>
 				</dict>
 				<dict>
@@ -869,7 +891,7 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#literals</string>
+					<string>#subcommands</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -899,9 +921,29 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>@[a-z]</string>
+					<string>@[a-z]+</string>
 					<key>name</key>
 					<string>meta.selectors</string>
+				</dict>
+			</array>
+		</dict>
+		<key>subcommands</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.class.mcfunction</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>[A-Za-z_]+</string>
+					<key>name</key>
+					<string>meta.literals</string>
 				</dict>
 			</array>
 		</dict>

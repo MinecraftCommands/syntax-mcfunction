@@ -203,12 +203,14 @@ execute as @a[=nearest] run
 execute as @a[name=my name] run
 execute as @a[name="my name] run
 execute as @a[name=my name"] run
+]]
 
 # test invalid resource location argument
 execute as @a[type=mypack:] run
 execute as @a[type=:foo] run
 execute as @a[type=#mypack:] run
 execute as @a[type=#:foo] run
+]
 
 # test invalid edge cases
 execute as @a[gamemode=survival,]] run
