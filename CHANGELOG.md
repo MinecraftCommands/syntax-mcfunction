@@ -5,7 +5,7 @@
 - Literals with suffixes (b, B, l, L) now highlight properly
 - Literals inside properties (specifically `true`/`false`) highlight better
 - Resource Names within properties highlight better
-  - this causes false-positives via `minecraft:block{key:value}` to highlight incorrectly
+  - This causes false-positives via `minecraft:block{key:value}` to highlight incorrectly
 - Added `-`, `.` as a valid special fakeplayer character
   - These characters will only highlight within valid fakeplayer starting characters (`#%$.`)
 - Adjusted some scope names to match `language-mcfunction` better
