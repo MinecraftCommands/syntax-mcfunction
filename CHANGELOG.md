@@ -1,5 +1,21 @@
 # Changelog
 
+## v0.5.0
+
+- Literals with suffixes (b, B, l, L) now highlight properly
+- Literals inside properties (specifically `true`/`false`) highlight better
+- Resource Names within properties highlight better
+  - this causes false-positives via `minecraft:block{key:value}` to highlight incorrectly
+- Added `-`, `.` as a valid special fakeplayer character
+  - These characters will only highlight within valid fakeplayer starting characters (`#%$.`)
+- Adjusted some scope names to match `language-mcfunction` better
+- Fixed sublime support (hopefully)
+- Improved some testing
+
+## v0.4.x
+
+- Fiddling around w/ VSCode Publishing
+
 ## v0.3.1
 
 - Update name to `syntax-mcfunction`
