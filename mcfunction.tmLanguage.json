@@ -18,10 +18,10 @@
           "include": "#literals"
         },
         {
-          "include": "#names"
+          "include": "#comments"
         },
         {
-          "include": "#comments"
+          "include": "#names"
         },
         {
           "include": "#subcommands"

@@ -14,8 +14,8 @@ repository:
   root:
     patterns:
     - include: '#literals'
-    - include: '#names'
     - include: '#comments'
+    - include: '#names'
     - include: '#subcommands'
     - include: '#property'
     - include: '#operators'
