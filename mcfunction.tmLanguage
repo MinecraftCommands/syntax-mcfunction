@@ -883,11 +883,11 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#names</string>
+					<string>#comments</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#comments</string>
+					<string>#names</string>
 				</dict>
 				<dict>
 					<key>include</key>
