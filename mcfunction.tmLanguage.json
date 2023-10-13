@@ -18,10 +18,13 @@
           "include": "#literals"
         },
         {
+          "include": "#comments"
+        },
+        {
           "include": "#names"
         },
         {
-          "include": "#comments"
+          "include": "#comments_inline"
         },
         {
           "include": "#subcommands"
@@ -41,7 +44,7 @@
       "patterns": [
         {
           "applyEndPatternLast": 1,
-          "begin": "^\\s*(#[>!])(.+)$",
+          "begin": "^\\s*(#[>!#])(.+)$",
           "beginCaptures": {
             "1": {
               "name": "comment.block.mcfunction"
@@ -63,6 +66,19 @@
             }
           ]
         },
+        {
+          "captures": {
+            "0": {
+              "name": "comment.line.mcfunction"
+            }
+          },
+          "match": "^\\s*#.*$",
+          "name": "meta.comments"
+        }
+      ]
+    },
+    "comments_inline": {
+      "patterns": [
         {
           "captures": {
             "0": {
