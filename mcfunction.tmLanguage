@@ -26,7 +26,7 @@
 					<key>applyEndPatternLast</key>
 					<integer>1</integer>
 					<key>begin</key>
-					<string>^\s*(#[&gt;!])(.+)$</string>
+					<string>^\s*(#[&gt;!#])(.+)$</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -70,7 +70,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>#.*$</string>
+					<string>^\s*#.*$</string>
 					<key>name</key>
 					<string>meta.comments</string>
 				</dict>
@@ -219,6 +219,26 @@
 					<string>[#%$][A-Za-z0-9_.#%$]+</string>
 					<key>name</key>
 					<string>meta.comments_block_special</string>
+				</dict>
+			</array>
+		</dict>
+		<key>comments_inline</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>comment.line.mcfunction</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>#.*$</string>
+					<key>name</key>
+					<string>meta.comments</string>
 				</dict>
 			</array>
 		</dict>
@@ -799,7 +819,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>[A-Za-z_\-\+]+</string>
+					<string>[A-Za-z_]+[A-Za-z_\-\+]*</string>
 					<key>name</key>
 					<string>meta.property_key</string>
 				</dict>
@@ -888,6 +908,10 @@
 				<dict>
 					<key>include</key>
 					<string>#names</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#comments_inline</string>
 				</dict>
 				<dict>
 					<key>include</key>
