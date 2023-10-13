@@ -23,7 +23,11 @@ execute as @s run say this should also not be a comment
 # @hello this block is not highlighted
 # because the first line doesn't have a prefix
 
-#> Another block
+#! Another block
+# @hello this is another block
+# and this is the end
+
+## Another block
 # @hello this is another block
 # and this is the end
 
@@ -80,3 +84,13 @@ execute as @s run say this should also also also be a command
 #^ And another one
 
 #* And another one
+
+## This should be a block comment
+
+#execute as @a run say hi
+#       execute as @a run say hi
+#> execute as @a run say hi
+
+execute as @a run say hi  # tacossss
+execute if block #minecraft:stone
+

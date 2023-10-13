@@ -27,7 +27,6 @@
                     "MCF"
                 ],
                 "extensions": [
-                    ".mcfunction",
                     ".mcfunction"
                 ],
                 "configuration": "./language-configuration.json"
