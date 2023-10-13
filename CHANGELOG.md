@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.6.0
+
+- Added `##` as a valid block starter
+- Fixed comments ordering so that both inline AND commented commands work
+
 ## v0.5.0
 
 - Literals with suffixes (b, B, l, L) now highlight properly

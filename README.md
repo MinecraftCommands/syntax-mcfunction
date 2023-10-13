@@ -53,6 +53,16 @@ This will keep the package updated with the repository automatically.
 
 Otherwise you can clone the repository into user packages (e.g. `%appdata%\Sublime Text 3\Packages`) and update it manually.
 
+## Contributing
+
+We are happy to accept any PRs just make sure to make a cooresponding issue first to track it. When making a PR, make sure the branch of your fork is **not** `main` and also make sure maintainers are allowed to edit your PR. This is helpful for me making small edits to the PR before merging.
+
+We only require edits to the `yaml` file as the `json` and `plist` files are generated. You can use the npm package, `js-yaml`, to generate the `json` file after editting the `yaml` file.
+
+```bash
+npx js-yaml mcfunction.tmLanguage.yaml > mcfunction.tmLanguage.json
+```
+
 ## Acknowledgements
 
 This repo is entirely dedicated to our beloved community member and friend, [Arcensoth](https://github.com/Arcensoth). His work on the original [language-mcfunction](https://github.com/Arcensoth/language-mcfunction) and overall contributions to the Minecraft Commands community was invaluable and he will be missed.
