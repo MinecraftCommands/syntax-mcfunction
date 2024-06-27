@@ -21,6 +21,16 @@ jobs:
         with:
           fetch-depth: 0
 
+      # Fetch all branches and tags
+      - name: Fetch all branches and tags
+        run: git fetch --all
+
+      - name: Checkout main branch
+        run: git checkout main
+
+      # ---------------------------------------------
+      # -----           setup deps             -----
+      # ---------------------------------------------
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
@@ -33,6 +43,9 @@ jobs:
           npm install -g js-yaml
           npm install -g ovsx
 
+      # ---------------------------------------------
+      # -----         generate files           -----
+      # ---------------------------------------------
       - name: Export JSON from YAML
         run: js-yaml mcfunction.tmLanguage.yaml > mcfunction.tmLanguage.json
 
@@ -43,6 +56,9 @@ jobs:
           echo "v=$VERSION" >> "$GITHUB_OUTPUT"
           echo "ext=syntax-mcfunction-$VERSION.vsix" >> "$GITHUB_OUTPUT"
 
+      # ---------------------------------------------
+      # -----           push files             -----
+      # ---------------------------------------------
       - name: Push JSON to repo for sublime (if not matched)
         if: github.ref == 'refs/heads/main'
         run: |
@@ -63,6 +79,9 @@ jobs:
           git commit -m "🤖 Bump version"
           git push origin main
 
+      # ---------------------------------------------
+      # -----             release              -----
+      # ---------------------------------------------
       - id: package
         name: Package VSCode Ext
         run: vsce package
