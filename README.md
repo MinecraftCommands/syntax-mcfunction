@@ -8,10 +8,6 @@ A syntax definition for <a href="https://minecraft.wiki/w/Commands">Minecraft Co
 Give this repo a ⭐ if you like it!
 </p>
 
-
-> **Warning**
-> This syntax is in **beta** targeting Minecraft 1.20.2+
-
 ![demo](https://raw.githubusercontent.com/MinecraftCommands/syntax-mcfunction/main/imgs/preview.png)
 
 ## Goals

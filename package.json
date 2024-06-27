@@ -2,7 +2,7 @@
     "name": "syntax-mcfunction",
     "publisher": "MinecraftCommands",
     "displayName": "syntax-mcfunction",
-    "description": "Syntax highlighting for mcfunction files (Last Updated: 1.20.2)",
+    "description": "Syntax highlighting for mcfunction files (Last Updated: 1.21)",
     "icon": "icon.png",
     "author": "MinecraftCommands",
     "version": "0.6.0",
