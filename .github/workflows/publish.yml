@@ -36,6 +36,10 @@ jobs:
       - name: Export JSON from YAML
         run: js-yaml mcfunction.tmLanguage.yaml > mcfunction.tmLanguage.json
 
+      - id: version
+        name: Version
+        run: version=$(echo ${{ github.ref_name }} | sed 's/^v//') >> "$GITHUB_OUTPUT"
+
       - name: Push JSON to repo for sublime (if not matched)
         if: github.ref == 'refs/heads/main'
         run: |
@@ -46,11 +50,20 @@ jobs:
           git push origin main
         continue-on-error: true
 
+      - name: Push version number to repo
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          jq '.version = ${{ steps.version.outputs.version }}' package.json > package.json 
+          git config --global user.name "github-actions"
+          git config --global user.email "action@github.com"
+          git add mcfunction.tmLanguage.json
+          git commit -m "🤖 Bump version"
+          git push origin main
+
       - id: package
         name: Package VSCode Ext
         run: |
           vsce package
-          VERSION=$(echo ${{ github.ref_name }} | sed 's/^v//')
           echo "ext=syntax-mcfunction-$VERSION.vsix" >> "$GITHUB_OUTPUT"
 
       - name: Archive production artifacts
