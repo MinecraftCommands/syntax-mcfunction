@@ -56,7 +56,7 @@ jobs:
       - name: Push version number to repo
         if: startsWith(github.ref, 'refs/tags/')
         run: |
-          jq '.version = ${{ steps.version.outputs.v }}' package.json > package.json 
+          jq '.version = "${{ steps.version.outputs.v }}"' package.json > package.json 
           git config --global user.name "github-actions"
           git config --global user.email "action@github.com"
           git add mcfunction.tmLanguage.json
