@@ -5,7 +5,7 @@
   "description": "Syntax highlighting for mcfunction files (Last Updated: 1.21)",
   "icon": "icon.png",
   "author": "MinecraftCommands",
-  "version": "0.7.8",
+  "version": "{{ steps.version.outputs.v }}",
   "license": "MIT",
   "repository": {
     "type": "git",
