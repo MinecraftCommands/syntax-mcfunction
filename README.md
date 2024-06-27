@@ -12,7 +12,7 @@ Give this repo a ⭐ if you like it!
 
 ## Goals
 
-The aim of this syntax definition is to provide a general, feature complete language spec for Minecraft commands. It is **not** geared towards error checking or the specific commands and specifically contains **zero** error highlighting, allowing for decent hightlighting of invalid or custom pre-processed command scripts.
+The aim of this syntax definition is to provide a general, feature complete language spec for Minecraft commands. It is **not** geared towards error checking or the specific commands and specifically contains **zero** error highlighting, allowing for decent highlighting of invalid or custom pre-processed command scripts.
 
 ## TODOs
 
