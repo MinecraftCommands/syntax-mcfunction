@@ -59,7 +59,7 @@ jobs:
           jq '.version = "${{ steps.version.outputs.v }}"' package.json > package.json 
           git config --global user.name "github-actions"
           git config --global user.email "action@github.com"
-          git add mcfunction.tmLanguage.json
+          git add package.json
           git commit -m "🤖 Bump version"
           git push origin main
 
