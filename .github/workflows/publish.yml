@@ -29,9 +29,9 @@ jobs:
 
       - name: Install npm stuff
         run: |
-          npm install -g @vscode/vsce
-          npm install -g js-yaml
-          npm install -g osvx
+          npx install @vscode/vsce
+          npx install js-yaml
+          npx install osvx
 
       - name: Export JSON from YAML
         run: js-yaml mcfunction.tmLanguage.yaml > mcfunction.tmLanguage.json
