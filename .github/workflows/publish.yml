@@ -78,7 +78,7 @@ jobs:
       - name: Push version number to repo
         if: startsWith(github.ref, 'refs/tags/')
         run: |
-          jq '.version = "0.7.8"' package.json > package.json.tmp           
+          jq '.version = "{{ steps.version.outputs.v }}"' package.json > package.json.tmp           
           mv package.json.tmp package.json 
           git config --global user.name "github-actions"
           git config --global user.email "action@github.com"
@@ -99,18 +99,18 @@ jobs:
         with:
           name: dist-without-markdown
           path: |
-            "${{ steps.version.outputs.ext }}"
-            "mcfunction.tmLanguage.yaml"
-            "mcfunction.tmLanguage.json"
+            *.vsix
+            mcfunction.tmLanguage.yaml
+            mcfunction.tmLanguage.json
 
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            "*.vsix"
-            "mcfunction.tmLanguage.yaml"
-            "mcfunction.tmLanguage.json"
+            *.vsix
+            mcfunction.tmLanguage.yaml
+            mcfunction.tmLanguage.json
 
       - name: Release to openvsix
         if: startsWith(github.ref, 'refs/tags/')
