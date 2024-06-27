@@ -55,3 +55,11 @@ say "uh oh
 
 say 'uh oh
 # same here
+
+tellraw @s ["test test test\
+test test test test test test\
+test test", "test test"]
+
+tellraw @s ['test test test\
+test test test test test test\
+test test', 'test test']

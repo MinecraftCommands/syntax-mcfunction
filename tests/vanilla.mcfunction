@@ -166,3 +166,11 @@ execute if score @s foo < @s bar run say hello @e[tag=baz, sort=nearest, limit=1
 scoreboard players operation @a result \
     += @e[type=marker,limit=1,tag=source] value
 $data modify storage $(id) $(path) set value "with random $(string1) stuff $(string2)"
+
+give @n armor_stand[entity_data={id:"minecraft:armor_stand", Tags:[taco_sauce]}]
+
+say -1L -1l -1S -1s -1 0 1 1b 1s 1S 1l 1L
+
+say "Something" Something
+
+give @s taco[minecraft:unbreaking]

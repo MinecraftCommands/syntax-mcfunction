@@ -46,3 +46,7 @@ execute if block ~ ~ ~ mypack:/foo run say hi
 execute if block ~ ~ ~ #mypack:/ run say hi
 execute if block ~ ~ ~ #mypack:foo/ run say hi
 execute if block ~ ~ ~ #mypack:/foo run say hi
+
+function gm4_boots_of_ostara:flippers_merge
+function gm4_boots_of_ostara:flippers/merge
+function gm_boots_of_ostara:flippers_merge

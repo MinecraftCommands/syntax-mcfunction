@@ -617,3 +617,11 @@ something()
 from ./utils import load_storage
 load_storage(./random_data, "random_data.json")
 if data storage ./random_data {value: 42} say json loaded successfully
+
+"""
+Multiline comments
+
+are not parsed properly
+
+apparently
+"""

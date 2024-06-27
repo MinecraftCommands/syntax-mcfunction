@@ -21,6 +21,9 @@
           "include": "#comments"
         },
         {
+          "include": "#say"
+        },
+        {
           "include": "#names"
         },
         {
@@ -191,19 +194,10 @@
         {
           "captures": {
             "0": {
-              "name": "literal.mcfunction"
-            }
-          },
-          "match": "\\.\\.",
-          "name": "meta.literals"
-        },
-        {
-          "captures": {
-            "0": {
               "name": "constant.numeric.boolean.mcfunction"
             }
           },
-          "match": "(true|false|True|False)",
+          "match": "\\b(true|false|True|False)\\b",
           "name": "meta.literals"
         },
         {
@@ -230,28 +224,33 @@
               "name": "constant.numeric.integer.mcfunction"
             }
           },
-          "match": "[+-]?\\d+(b|B|L|l)\\b",
+          "match": "[+-]?\\d+(b|B|L|l|s|S)?\\b",
           "name": "meta.literals"
         },
         {
           "captures": {
             "0": {
-              "name": "constant.numeric.integer.mcfunction"
+              "name": "variable.other.mcfunction"
             }
           },
-          "match": "[+-]?\\d+\\b",
-          "name": "meta.literals"
+          "match": "\\.\\.",
+          "name": "meta.ellipse.literals"
         },
         {
           "applyEndPatternLast": 1,
           "begin": "\"",
-          "captures": {
+          "beginCaptures": {
             "0": {
-              "name": "string.quoted.double.mcfunction"
+              "name": "punctuation.definition.string.begin.mcfunction"
             }
           },
-          "end": "(\"|$)",
-          "name": "meta.literals",
+          "end": "\"",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.mcfunction"
+            }
+          },
+          "name": "string.quoted.double.mcfunction",
           "patterns": [
             {
               "include": "#literals_string-double"
@@ -261,13 +260,18 @@
         {
           "applyEndPatternLast": 1,
           "begin": "'",
-          "captures": {
+          "beginCaptures": {
             "0": {
-              "name": "string.quoted.single.mcfunction"
+              "name": "punctuation.definition.string.begin.mcfunction"
             }
           },
-          "end": "('|$)",
-          "name": "meta.literals",
+          "end": "'",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.mcfunction"
+            }
+          },
+          "name": "string.quoted.single.mcfunction",
           "patterns": [
             {
               "include": "#literals_string-single"
@@ -284,7 +288,7 @@
               "name": "entity.name.class.mcfunction"
             }
           },
-          "match": "[A-Za-z_]+",
+          "match": "[a-z_]+",
           "name": "meta.literals"
         }
       ]
@@ -298,6 +302,15 @@
             }
           },
           "match": "\\\\.",
+          "name": "meta.literals_string-double"
+        },
+        {
+          "captures": {
+            "0": {
+              "name": "constant.character.escape.mcfunction"
+            }
+          },
+          "match": "\\\\",
           "name": "meta.literals_string-double"
         },
         {
@@ -326,6 +339,15 @@
           "name": "meta.literals_string-single"
         },
         {
+          "captures": {
+            "0": {
+              "name": "constant.character.escape.mcfunction"
+            }
+          },
+          "match": "\\\\",
+          "name": "meta.literals_string-double"
+        },
+        {
           "include": "#macro-name"
         },
         {
@@ -336,6 +358,73 @@
           },
           "match": "[^\\\\']",
           "name": "meta.literals_string-single"
+        }
+      ]
+    },
+    "say": {
+      "patterns": [
+        {
+          "begin": "^(\\s*)(say)",
+          "beginCaptures": {
+            "1": {
+              "name": "whitespace.mcfunction"
+            },
+            "2": {
+              "name": "keyword.control.flow.mcfunction"
+            }
+          },
+          "end": "\\n",
+          "name": "meta.say.mcfunction",
+          "patterns": [
+            {
+              "captures": {
+                "0": {
+                  "name": "constant.character.escape.mcfunction"
+                }
+              },
+              "match": "\\\\\\s*\\n",
+              "meta": "meta.say.backslash.mcfunction"
+            },
+            {
+              "include": "#literals_string-double"
+            },
+            {
+              "include": "#literals_string-single"
+            }
+          ]
+        },
+        {
+          "begin": "(run)(\\s+)(say)",
+          "beginCaptures": {
+            "1": {
+              "name": "entity.name.mcfunction"
+            },
+            "2": {
+              "name": "whitespace.mcfunction"
+            },
+            "3": {
+              "name": "keyword.control.flow.mcfunction"
+            }
+          },
+          "end": "\\n",
+          "name": "meta.say.mcfunction",
+          "patterns": [
+            {
+              "captures": {
+                "0": {
+                  "name": "constant.character.escape.mcfunction"
+                }
+              },
+              "match": "\\\\\\s*\\n",
+              "meta": "meta.say.backslash.mcfunction"
+            },
+            {
+              "include": "#literals_string-double"
+            },
+            {
+              "include": "#literals_string-single"
+            }
+          ]
         }
       ]
     },
@@ -445,10 +534,19 @@
         {
           "captures": {
             "0": {
+              "name": "constant.numeric.mcfunction"
+            }
+          },
+          "match": "[~^]",
+          "name": "meta.operators"
+        },
+        {
+          "captures": {
+            "0": {
               "name": "keyword.operator.mcfunction"
             }
           },
-          "match": "[\\-~%^?!+*<>\\\\/|&=.:,;]",
+          "match": "[\\-%?!+*<>\\\\/|&=.:,;]",
           "name": "meta.operators"
         }
       ]
@@ -555,16 +653,16 @@
         {
           "captures": {
             "0": {
-              "name": "entity.name.type.mcfunction"
+              "name": "variable.other.mcfunction"
             }
           },
-          "match": "#?[a-z_][a-z_\\.\\-]*\\:[a-z0-9_\\.\\-/]+(?=\\s*\\=)",
+          "match": "#?[a-z_][a-z_\\.\\-]*\\:[a-z0-9_\\.\\-/]+(?=\\s*\\=:)",
           "name": "meta.property_key"
         },
         {
           "captures": {
             "0": {
-              "name": "entity.name.type.mcfunction"
+              "name": "variable.other.mcfunction"
             }
           },
           "match": "#?[a-z_][a-z0-9_\\.\\-/]+",
@@ -573,7 +671,7 @@
         {
           "captures": {
             "0": {
-              "name": "entity.name.type.mcfunction"
+              "name": "variable.other.mcfunction"
             }
           },
           "match": "[A-Za-z_]+[A-Za-z_\\-\\+]*",
@@ -586,7 +684,7 @@
         {
           "captures": {
             "0": {
-              "name": "entity.name.tag.mcfunction"
+              "name": "string.unquoted.mcfunction"
             }
           },
           "match": "#?[a-z_][a-z_\\.\\-]*\\:[a-z0-9_\\.\\-/]+",
@@ -595,7 +693,7 @@
         {
           "captures": {
             "0": {
-              "name": "entity.name.tag.mcfunction"
+              "name": "string.unquoted.mcfunction"
             }
           },
           "match": "#?[a-z_][a-z0-9_\\.\\-/]+",
@@ -611,7 +709,7 @@
               "name": "entity.name.function.mcfunction"
             }
           },
-          "match": "#?[a-z_][a-z_.-]*:[a-z0-9_./-]+",
+          "match": "#?[a-z_][a-z0-9_.-]*:[a-z0-9_./-]+",
           "name": "meta.resource-name"
         },
         {
