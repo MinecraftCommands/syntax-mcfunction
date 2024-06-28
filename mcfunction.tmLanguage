@@ -252,25 +252,11 @@
 						<key>0</key>
 						<dict>
 							<key>name</key>
-							<string>literal.mcfunction</string>
-						</dict>
-					</dict>
-					<key>match</key>
-					<string>\.\.</string>
-					<key>name</key>
-					<string>meta.literals</string>
-				</dict>
-				<dict>
-					<key>captures</key>
-					<dict>
-						<key>0</key>
-						<dict>
-							<key>name</key>
 							<string>constant.numeric.boolean.mcfunction</string>
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>(true|false|True|False)</string>
+					<string>\b(true|false|True|False)\b</string>
 					<key>name</key>
 					<string>meta.literals</string>
 				</dict>
@@ -312,7 +298,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>[+-]?\d+(b|B|L|l)\b</string>
+					<string>[+-]?\d+(b|B|L|l|s|S)?\b</string>
 					<key>name</key>
 					<string>meta.literals</string>
 				</dict>
@@ -322,31 +308,39 @@
 						<key>0</key>
 						<dict>
 							<key>name</key>
-							<string>constant.numeric.integer.mcfunction</string>
+							<string>variable.other.mcfunction</string>
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>[+-]?\d+\b</string>
+					<string>\.\.</string>
 					<key>name</key>
-					<string>meta.literals</string>
+					<string>meta.ellipse.literals</string>
 				</dict>
 				<dict>
 					<key>applyEndPatternLast</key>
 					<integer>1</integer>
 					<key>begin</key>
 					<string>"</string>
-					<key>captures</key>
+					<key>beginCaptures</key>
 					<dict>
 						<key>0</key>
 						<dict>
 							<key>name</key>
-							<string>string.quoted.double.mcfunction</string>
+							<string>punctuation.definition.string.begin.mcfunction</string>
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>("|$)</string>
+					<string>"</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.string.end.mcfunction</string>
+						</dict>
+					</dict>
 					<key>name</key>
-					<string>meta.literals</string>
+					<string>string.quoted.double.mcfunction</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -360,18 +354,26 @@
 					<integer>1</integer>
 					<key>begin</key>
 					<string>'</string>
-					<key>captures</key>
+					<key>beginCaptures</key>
 					<dict>
 						<key>0</key>
 						<dict>
 							<key>name</key>
-							<string>string.quoted.single.mcfunction</string>
+							<string>punctuation.definition.string.begin.mcfunction</string>
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>('|$)</string>
+					<string>'</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.string.begin.mcfunction</string>
+						</dict>
+					</dict>
 					<key>name</key>
-					<string>meta.literals</string>
+					<string>string.quoted.single.mcfunction</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -397,6 +399,20 @@
 					</dict>
 					<key>match</key>
 					<string>\\.</string>
+					<key>name</key>
+					<string>meta.literals_string-double</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>constant.character.escape.mcfunction</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>\\</string>
 					<key>name</key>
 					<string>meta.literals_string-double</string>
 				</dict>
@@ -437,6 +453,20 @@
 					<string>\\.</string>
 					<key>name</key>
 					<string>meta.literals_string-single</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>constant.character.escape.mcfunction</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>\\</string>
+					<key>name</key>
+					<string>meta.literals_string-double</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -626,11 +656,25 @@
 						<key>0</key>
 						<dict>
 							<key>name</key>
+							<string>constant.numeric.mcfunction</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>[~^]</string>
+					<key>name</key>
+					<string>meta.operators</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
 							<string>keyword.operator.mcfunction</string>
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>[\-~%^?!+*&lt;&gt;\\/|&amp;=.:,;]</string>
+					<string>[\-%?!+*&lt;&gt;\\/|&amp;=.:,;]</string>
 					<key>name</key>
 					<string>meta.operators</string>
 				</dict>
@@ -787,11 +831,11 @@
 						<key>0</key>
 						<dict>
 							<key>name</key>
-							<string>entity.name.type.mcfunction</string>
+							<string>variable.other.mcfunction</string>
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>#?[a-z_][a-z_\.\-]*\:[a-z0-9_\.\-/]+(?=\s*\=)</string>
+					<string>#?[a-z_][a-z_\.\-]*\:[a-z0-9_\.\-/]+(?=\s*\=:)</string>
 					<key>name</key>
 					<string>meta.property_key</string>
 				</dict>
@@ -801,7 +845,7 @@
 						<key>0</key>
 						<dict>
 							<key>name</key>
-							<string>entity.name.type.mcfunction</string>
+							<string>variable.other.mcfunction</string>
 						</dict>
 					</dict>
 					<key>match</key>
@@ -815,7 +859,7 @@
 						<key>0</key>
 						<dict>
 							<key>name</key>
-							<string>entity.name.type.mcfunction</string>
+							<string>variable.other.mcfunction</string>
 						</dict>
 					</dict>
 					<key>match</key>
@@ -835,7 +879,7 @@
 						<key>0</key>
 						<dict>
 							<key>name</key>
-							<string>entity.name.tag.mcfunction</string>
+							<string>string.unquoted.mcfunction</string>
 						</dict>
 					</dict>
 					<key>match</key>
@@ -849,7 +893,7 @@
 						<key>0</key>
 						<dict>
 							<key>name</key>
-							<string>entity.name.tag.mcfunction</string>
+							<string>string.unquoted.mcfunction</string>
 						</dict>
 					</dict>
 					<key>match</key>
@@ -873,7 +917,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>#?[a-z_][a-z_.-]*:[a-z0-9_./-]+</string>
+					<string>#?[a-z_][a-z0-9_.-]*:[a-z0-9_./-]+</string>
 					<key>name</key>
 					<string>meta.resource-name</string>
 				</dict>
@@ -907,6 +951,10 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#say</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#names</string>
 				</dict>
 				<dict>
@@ -928,6 +976,109 @@
 				<dict>
 					<key>include</key>
 					<string>#selectors</string>
+				</dict>
+			</array>
+		</dict>
+		<key>say</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>^(\s*)(say)</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>whitespace.mcfunction</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.control.flow.mcfunction</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>\n</string>
+					<key>name</key>
+					<string>meta.say.mcfunction</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>captures</key>
+							<dict>
+								<key>0</key>
+								<dict>
+									<key>name</key>
+									<string>constant.character.escape.mcfunction</string>
+								</dict>
+							</dict>
+							<key>match</key>
+							<string>\\\s*\n</string>
+							<key>meta</key>
+							<string>meta.say.backslash.mcfunction</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#literals_string-double</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#literals_string-single</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>(run)(\s+)(say)</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.mcfunction</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>whitespace.mcfunction</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.control.flow.mcfunction</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>\n</string>
+					<key>name</key>
+					<string>meta.say.mcfunction</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>captures</key>
+							<dict>
+								<key>0</key>
+								<dict>
+									<key>name</key>
+									<string>constant.character.escape.mcfunction</string>
+								</dict>
+							</dict>
+							<key>match</key>
+							<string>\\\s*\n</string>
+							<key>meta</key>
+							<string>meta.say.backslash.mcfunction</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#literals_string-double</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#literals_string-single</string>
+						</dict>
+					</array>
 				</dict>
 			</array>
 		</dict>
@@ -965,7 +1116,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>[A-Za-z_]+</string>
+					<string>[a-z_]+</string>
 					<key>name</key>
 					<string>meta.literals</string>
 				</dict>

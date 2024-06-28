@@ -6,7 +6,6 @@ on:
     paths:
       - "mcfunction.*"
   push:
-    branches: [main]
     tags: ["v*.*.*"]
 
 jobs:
@@ -15,7 +14,7 @@ jobs:
 
     steps:
       # ---------------------------------------------
-      # -----           gather repo             -----
+      #  ----           gather repo             -----
       # ---------------------------------------------
       - uses: actions/checkout@v3
         with:
@@ -29,7 +28,7 @@ jobs:
         run: git checkout main
 
       # ---------------------------------------------
-      # -----           setup deps             -----
+      #  ----           setup deps             -----
       # ---------------------------------------------
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
@@ -42,6 +41,7 @@ jobs:
           npm install -g @vscode/vsce
           npm install -g js-yaml
           npm install -g ovsx
+          npm install -g plist2
 
       - name: "Setup jq"
         uses: dcarbone/install-jq-action@v2
@@ -50,10 +50,12 @@ jobs:
           force: true
 
       # ---------------------------------------------
-      # -----         generate files           -----
+      #  ----         generate files           -----
       # ---------------------------------------------
-      - name: Export JSON from YAML
-        run: js-yaml mcfunction.tmLanguage.yaml > mcfunction.tmLanguage.json
+      - name: Export YAML -> JSON -> PLIST
+        run: |
+          js-yaml mcfunction.tmLanguage.yaml > mcfunction.tmLanguage.json
+          plist2 mcfunction.tmLanguage.json mcfunction.tmLanguage
 
       - id: version
         name: Version
@@ -63,15 +65,15 @@ jobs:
           echo "ext=syntax-mcfunction-$VERSION.vsix" >> "$GITHUB_OUTPUT"
 
       # ---------------------------------------------
-      # -----           push files             -----
+      #  ----           push files             -----
       # ---------------------------------------------
       - name: Push JSON to repo for sublime (if not matched)
         if: github.ref == 'refs/heads/main'
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "action@github.com"
-          git add mcfunction.tmLanguage.json
-          git commit -m "🤖 Generate JSON"
+          git add mcfunction.tmLanguage.json mcfunction.tmLanguage
+          git commit -m "🤖 Generate JSON/PLIST"
           git push origin main
         continue-on-error: true
 
@@ -83,11 +85,11 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "action@github.com"
           git add package.json
-          git commit -m "🤖 Bump version"
+          git commit -m "🎉 Release ${{ steps.version.outputs.v }}"
           git push origin main
 
       # ---------------------------------------------
-      # -----             release              -----
+      #  ----             release              -----
       # ---------------------------------------------
       - id: package
         name: Package VSCode Ext
@@ -111,6 +113,10 @@ jobs:
             *.vsix
             mcfunction.tmLanguage.yaml
             mcfunction.tmLanguage.json
+
+      - name: Release to vsce
+        if: startsWith(github.ref, 'refs/tags/')
+        run: vsce publish
 
       - name: Release to openvsix
         if: startsWith(github.ref, 'refs/tags/')
