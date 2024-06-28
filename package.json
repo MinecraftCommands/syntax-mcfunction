@@ -1,46 +1,46 @@
 {
-  "name": "syntax-mcfunction",
-  "publisher": "MinecraftCommands",
-  "displayName": "syntax-mcfunction",
-  "description": "Syntax highlighting for mcfunction files (Last Updated: 1.21)",
-  "icon": "icon.png",
-  "author": "MinecraftCommands",
-  "version": "1.0.0",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/MinecraftCommands/syntax-mcfunction"
-  },
-  "engines": {
-    "vscode": "^1.81.0"
-  },
-  "categories": [
-    "Programming Languages"
-  ],
-  "contributes": {
-    "languages": [
-      {
-        "id": "mcfunction",
-        "aliases": [
-          "mcfunction",
-          "mcf",
-          "MCF"
-        ],
-        "extensions": [
-          ".mcfunction"
-        ],
-        "configuration": "./language-configuration.json"
-      }
+    "name": "syntax-mcfunction",
+    "publisher": "MinecraftCommands",
+    "displayName": "syntax-mcfunction",
+    "description": "Syntax highlighting for mcfunction files (Last Updated: 1.21)",
+    "icon": "icon.png",
+    "author": "MinecraftCommands",
+    "version": "0.7.14",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/MinecraftCommands/syntax-mcfunction"
+    },
+    "engines": {
+        "vscode": "^1.81.0"
+    },
+    "categories": [
+        "Programming Languages"
     ],
-    "grammars": [
-      {
-        "language": "mcfunction",
-        "scopeName": "source.mcfunction",
-        "path": "./mcfunction.tmLanguage.json"
-      }
-    ]
-  },
-  "devDependencies": {
-    "js-yaml": "^4.1.0"
-  }
+    "contributes": {
+        "languages": [
+            {
+                "id": "mcfunction",
+                "aliases": [
+                    "mcfunction",
+                    "mcf",
+                    "MCF"
+                ],
+                "extensions": [
+                    ".mcfunction"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "mcfunction",
+                "scopeName": "source.mcfunction",
+                "path": "./mcfunction.tmLanguage.json"
+            }
+        ]
+    },
+    "devDependencies": {
+        "js-yaml": "^4.1.0"
+    }
 }
