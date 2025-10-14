@@ -308,7 +308,7 @@ repository:
       - captures:
           "0":
             name: entity.name.mcfunction
-        match: '[A-Za-z]+(?=[^\w\.])'
+        match: '[A-Za-z_]+(?=\\W)'
         name: meta.names
       - captures:
           "0":
